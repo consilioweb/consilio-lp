@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   theme: {
     colors: {
@@ -15,6 +17,28 @@ module.exports = {
         800: '#00983c',
         900: '#00772d',
       },
+      gray: colors.trueGray,
+      red: colors.red,
+      blue: colors.lightBlue,
+      yellow: colors.amber,
+      rose: colors.rose,
+      pink: colors.pink,
+      fuchsia: colors.fuchsia,
+      purple: colors.purple,
+      violet: colors.violet,
+      indigo: colors.indigo,
+      lightBlue: colors.lightBlue,
+      cyan: colors.cyan,
+      teal: colors.teal,
+      emerald: colors.emerald,
+      green: colors.green,
+      lime: colors.lime,
+      amber: colors.amber,
+      orange: colors.orange,
+      warmGray: colors.warmGray,
+      trueGray: colors.trueGray,
+      coolGray: colors.coolGray,
+      blueGray: colors.blueGray,
     },
   },
   purge: {
