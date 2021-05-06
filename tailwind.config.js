@@ -2,6 +2,19 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   theme: {
+    rotate: {
+      '-180': '-180deg',
+      '-90': '-90deg',
+      '-45': '-45deg',
+      '-25': '-25deg',
+      0: '0',
+      25: '25deg',
+      45: '45deg',
+      90: '90deg',
+      135: '135deg',
+      180: '180deg',
+      270: '270deg',
+    },
     colors: {
       transparent: 'transparent',
       black: '#000',

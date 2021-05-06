@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="relative h-screen" @wheel="scrollToNextSection">
+    <div
+      class="scroll-container relative h-screen"
+      @wheel="scrollToNextSection"
+    >
       <div
         v-for="(section, index) in sections"
         :key="index"
@@ -31,24 +34,25 @@
           v-if="section.id === 2"
           :ref="`section${section.id}`"
           :class="`section${section.id}`"
-          class="section w-full mx-auto text-black overflow-y-scroll overflow-x-hidden py-36 h-screen md:pr-12"
+          class="section w-full mx-auto text-black overflow-y-scroll py-36 h-screen md:pr-12"
         >
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-6">
+          <div class="flex flex-col relative">
+            <div class="trigger1 w-full"></div>
             <div
-              v-for="(item, e) in items"
-              :key="e"
-              class="step-1 bg-black text-white w-full h-full p-6 rounded block"
+              class="step step1 bg-gradient-to-r from-blue-400 to-blue-800 h-52 w-46 rounded-lg p-6 bg-black"
             >
-              {{ item }}
-              <h1
-                v-gsap.to="{
-                  rotation: 360,
-                  x: 150,
-                  duration: 2,
-                }"
-              >
-                NUXT GSAP
-              </h1>
+              Teste
+            </div>
+            <div class="trigger2 w-full"></div>
+            <div
+              class="step step2 bg-black text-white h-24 w-24 flex items-center justify-center p-6 rounded-full block"
+            >
+              Teste
+            </div>
+            <div
+              class="step step3 bg-black text-white h-24 w-24 flex items-center justify-center p-6 rounded-full block"
+            >
+              Teste
             </div>
           </div>
         </section>
@@ -107,10 +111,8 @@
             }"
           >
             <div class="flex justify-center">
-              <div class="w-6 h-10 border border-white rounded-full">
-                <div
-                  class="w-1 h-2 rounded-full bg-white bg-opacity-75 m-auto mt-3"
-                ></div>
+              <div class="w-6 h-10 border-2 border-white rounded-full">
+                <div class="w-1 h-2 rounded-full bg-white m-auto mt-3"></div>
               </div>
             </div>
             <div class="flex justify-center">
@@ -150,11 +152,12 @@
 
 <script>
 import _ from 'lodash'
+import { TimelineMax } from 'gsap'
 
 export default {
   data() {
     return {
-      lmS: null,
+      tl: null,
       activeSection: 1,
       sections: [
         {
@@ -179,7 +182,7 @@ export default {
           offscreen: false,
         },
       ],
-      items: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      items: [1, 1, 1, 1, 1],
     }
   },
   created() {
@@ -196,7 +199,45 @@ export default {
       }
     )
   },
+  mounted() {
+    this.initAnim()
+  },
   methods: {
+    initAnim() {
+      if (process.client && window) {
+        const ScrollMagic = window.ScrollMagic
+        const controller = new ScrollMagic.Controller()
+
+        this.tl = new TimelineMax({ onUpdate: this.updatePercentage })
+
+        this.tl.fromTo(
+          '.step1',
+          1,
+          { x: -500, y: -500 },
+          { x: 100, y: 1000 },
+          '-1'
+        )
+        this.tl.fromTo(
+          '.step2',
+          1,
+          { x: 200, y: -800 },
+          { x: 200, y: 2700 },
+          '-1'
+        )
+
+        new ScrollMagic.Scene({
+          triggerElement: '.trigger1',
+          triggerHook: 1,
+          duration: '100%',
+        })
+          .setTween(this.tl)
+          .addTo(controller)
+      }
+    },
+    updatePercentage() {
+      this.tl.progress()
+      console.log(this.tl.progress())
+    },
     checkEndsY(deltaY) {
       const el = document.getElementsByClassName(`section${this.activeSection}`)
       if (el && el.length) {

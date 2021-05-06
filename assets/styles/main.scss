@@ -55,30 +55,38 @@
 }
 
 * {
-  box-sizing: border-box;
+  margin: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	list-style-type: none;
+	letter-spacing: 1.2px ;
+	-webkit-font-smoothing: antialiased;
 }
 
 html, body {
   font-family: "NeueAlteGrotesk"; 
   background: #000;
   color: #fff;
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-section {
+section, .section {
   backface-visibility: hidden;
 }
 
 ::-webkit-scrollbar {
   width: 5px;
-  right:5px;
+  right: 5px;
   position:absolute;
 }
  
 ::-webkit-scrollbar-thumb {
-  background:#FEF0FF;
-  border-radius:10px;
+  background: #FEF0FF;
+  border-radius: 10px;
+}
+
+.step {
+  position: absolute;
 }
 
 /*

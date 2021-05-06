@@ -14,13 +14,39 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js',
+        async: 'async',
+        ssr: false,
+        defer: true,
+        body: true,
+      },
+      {
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js',
+        async: 'async',
+        ssr: false,
+        defer: true,
+        body: true,
+      },
+      {
+        src:
+          'https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js',
+        async: 'async',
+        ssr: false,
+        defer: true,
+        body: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [{ src: '~/assets/styles/main.scss', lang: 'scss' }],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/locomotiveScroll.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -36,6 +62,7 @@ export default {
 
   gsap: {
     extraPlugins: {
+      scrollTo: true,
       scrollTrigger: true,
     },
   },
