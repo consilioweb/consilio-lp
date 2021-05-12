@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div
-      class="scroll-container relative h-screen"
-      @wheel="scrollToNextSection"
-    >
+  <div class="flex">
+    <div class="flex-1 h-screen relative" @wheel="scrollToNextSection">
       <div
         v-for="(section, index) in sections"
         :key="index"
@@ -15,11 +12,10 @@
       >
         <section
           v-if="section.id === 1"
-          :ref="`section${section.id}`"
-          :class="`section${section.id}`"
-          class="section container mx-auto content-center items-center md:pr-12"
+          :class="`section-${section.id}`"
+          class="section flex container mx-auto content-center items-center relative md:pr-2 w-full h-full"
         >
-          <div class="flex flex-col content-center items-center mx-auto">
+          <div class="flex flex-col justify-center items-center mx-auto">
             <Logo class="neon-effect" width="300px" />
             <div class="w-max mt-8">
               <h1 class="typewriter-effect text-xs md:text-base">
@@ -32,116 +28,114 @@
         </section>
         <section
           v-if="section.id === 2"
-          :ref="`section${section.id}`"
-          :class="`section${section.id}`"
-          class="section w-full mx-auto text-black overflow-y-scroll py-36 h-screen md:pr-12"
+          :class="`section-${section.id}`"
+          class="section mx-auto content-center items-center md:pr-12 w-full h-full relative overflow-y-scroll overflow-x-hidden"
         >
-          <div class="flex flex-col relative">
-            <div class="trigger1 w-full"></div>
-            <div
-              class="step step1 bg-gradient-to-r from-blue-400 to-blue-800 h-52 w-46 rounded-lg p-6 bg-black"
-            >
-              Teste
-            </div>
-            <div class="trigger2 w-full"></div>
-            <div
-              class="step step2 bg-black text-white h-24 w-24 flex items-center justify-center p-6 rounded-full block"
-            >
-              Teste
-            </div>
-            <div
-              class="step step3 bg-black text-white h-24 w-24 flex items-center justify-center p-6 rounded-full block"
-            >
-              Teste
+          <div class="flex flex-col mx-auto my-36 section-2-inner">
+            <div style="min-height: 1500px">
+              <div class="trigger-1"></div>
+              <div class="step section-2__title w-full text-black text-center">
+                <h2 class="uppercase font-extrabold text-5xl tracking-tighter">
+                  Foco no que realmente importa
+                </h2>
+                <span
+                  >Foque nos seus objetivos que nós te ajudaremos a alcançá-los
+                </span>
+              </div>
+              <div class="flex items-center h-full">
+                <div class="step section-2__1 bg-black w-full h-24">
+                  Seus Objetivos
+                </div>
+                <div class="step section-2__2 bg-black w-full h-24">
+                  Nosso Planejamento
+                </div>
+                <div class="step section-2__3 bg-black w-full h-24">
+                  Execução
+                </div>
+                <div class="step section-2__4 bg-black w-full h-24">
+                  Verificação de Resultados
+                </div>
+              </div>
             </div>
           </div>
         </section>
         <section
           v-if="section.id === 3"
-          :ref="`section${section.id}`"
-          :class="`section${section.id}`"
-          class="section w-full mx-auto text-black overflow-y-scroll overflow-x-hidden py-36 h-screen md:pr-12"
+          :class="`section-${section.id}`"
+          class="section container mx-auto content-center items-center md:pr-12 w-full h-full"
         >
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-6">
-            <div
-              v-for="(item, e) in items"
-              :key="e"
-              class="step-1 bg-black text-white w-full h-full p-6 rounded block"
-            >
-              {{ item }}
-            </div>
-          </div>
+          Teste
         </section>
       </div>
-      <div
-        class="fixed z-50 inset-x-2/4 md:inset-x-auto md:right-0 h-full flex md:items-center mr-5"
-      >
-        <div class="flex flex-col justify-between">
-          <div
-            class="flex justify-center bg-gray-800 rounded-full bg-opacity-25 mb-3"
-          >
-            <div class="flex flex-col hidden md:flex">
-              <div class="grid grid-cols-1 gap-4 py-4 px-2.5">
-                <div
-                  v-for="(section, index) in sections"
-                  :key="index"
-                  class="w-2.5 h-2.5 group ring-1 ring-white p-px ring-opacity-100 rounded-full"
-                >
-                  <button
-                    type="button"
-                    class="h-full w-full focus:outline-none block rounded-full group-hover:bg-white cursor-pointer"
-                    :class="{
-                      'bg-white': section.active,
-                    }"
-                    aria-hidden="true"
-                    aria-label="Set active section"
-                    :aria-checked="section.active"
-                    role="switch"
-                    @click="setActiveSection(section.id)"
-                  ></button>
-                </div>
+    </div>
+    <div
+      class="fixed z-50 inset-x-2/4 md:inset-x-auto md:right-0 h-full flex md:items-center mr-5"
+    >
+      <div class="flex flex-col justify-between">
+        <div
+          class="flex justify-center bg-gray-800 rounded-full bg-opacity-25 mb-3"
+        >
+          <div class="flex flex-col hidden md:flex">
+            <div class="grid grid-cols-1 gap-4 py-4 px-2.5">
+              <div
+                v-for="(section, index) in sections"
+                :key="index"
+                class="w-2.5 h-2.5 group ring-1 ring-white p-px ring-opacity-100 rounded-full"
+              >
+                <button
+                  type="button"
+                  class="h-full w-full focus:outline-none block rounded-full group-hover:bg-white cursor-pointer"
+                  :class="{
+                    'bg-white': section.active,
+                  }"
+                  aria-hidden="true"
+                  aria-label="Set active section"
+                  :aria-checked="section.active"
+                  role="switch"
+                  @click="setActiveSection(section.id)"
+                ></button>
               </div>
             </div>
           </div>
-          <div
-            class="flex flex-col transition-all duration-500 ease-in-out"
-            :class="{
-              'opacity-100': activeSection < sections.length,
-              'opacity-0': activeSection === sections.length,
-            }"
-          >
-            <div class="flex justify-center">
-              <div class="w-6 h-10 border-2 border-white rounded-full">
-                <div class="w-1 h-2 rounded-full bg-white m-auto mt-3"></div>
-              </div>
+        </div>
+        <div
+          class="flex flex-col transition-all duration-500 ease-in-out"
+          :class="{
+            'opacity-100': activeSection < sections.length,
+            'opacity-0': activeSection === sections.length,
+          }"
+        >
+          <div class="flex justify-center">
+            <div class="w-6 h-10 border-2 border-white rounded-full">
+              <div class="w-1 h-2 rounded-full bg-white m-auto mt-3"></div>
             </div>
-            <div class="flex justify-center">
-              <div class="animate-bounce motion-safe:animate-bounce">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 text-white transform translate-y-3 opacity-95"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 text-white opacity-40"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="animate-bounce motion-safe:animate-bounce">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-white transform translate-y-3 opacity-95"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-white opacity-40"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
             </div>
           </div>
         </div>
@@ -157,7 +151,7 @@ import { TimelineMax } from 'gsap'
 export default {
   data() {
     return {
-      tl: null,
+      lmS: null,
       activeSection: 1,
       sections: [
         {
@@ -200,46 +194,68 @@ export default {
     )
   },
   mounted() {
-    this.initAnim()
+    this.initScroll()
   },
   methods: {
-    initAnim() {
+    initScroll() {
       if (process.client && window) {
-        const ScrollMagic = window.ScrollMagic
-        const controller = new ScrollMagic.Controller()
-
-        this.tl = new TimelineMax({ onUpdate: this.updatePercentage })
-
-        this.tl.fromTo(
-          '.step1',
-          1,
-          { x: -500, y: -500 },
-          { x: 100, y: 1000 },
-          '-1'
-        )
-        this.tl.fromTo(
-          '.step2',
-          1,
-          { x: 200, y: -800 },
-          { x: 200, y: 2700 },
-          '-1'
-        )
-
-        new ScrollMagic.Scene({
-          triggerElement: '.trigger1',
-          triggerHook: 1,
-          duration: '100%',
+        const scrollmagic = window.ScrollMagic
+        const section2Controller = new scrollmagic.Controller({
+          container: '.section-2',
         })
-          .setTween(this.tl)
-          .addTo(controller)
+
+        const TL = new TimelineMax()
+
+        TL.fromTo(
+          '.section-2__title',
+          { autoAlpha: 1, scale: 1.2, y: 280 },
+          {
+            autoAlpha: 1,
+            scale: 1.0,
+            y: 800,
+            duration: 2500,
+            ease: 'power3.inOut',
+          },
+          '-=2'
+        )
+
+        TL.fromTo(
+          '.section-2__1',
+          { autoAlpha: 0, x: -500 },
+          { autoAlpha: 1, x: 0, ease: 'power3.inOut' }
+        )
+
+        TL.fromTo(
+          '.section-2__2',
+          { autoAlpha: 0, x: -500 },
+          { autoAlpha: 1, x: 0, ease: 'power3.inOut' }
+        )
+
+        TL.fromTo(
+          '.section-2__3',
+          { autoAlpha: 0, x: -500 },
+          { autoAlpha: 1, x: 0, ease: 'power3.inOut' }
+        )
+
+        TL.fromTo(
+          '.section-2__4',
+          { autoAlpha: 0, x: -500 },
+          { autoAlpha: 1, x: 0, ease: 'power3.inOut' }
+        )
+
+        new scrollmagic.Scene({
+          triggerElement: '.trigger-1',
+          triggerHook: 0,
+          duration: '90%',
+        })
+          .setTween(TL)
+          .addTo(section2Controller)
       }
     },
-    updatePercentage() {
-      this.tl.progress()
-      console.log(this.tl.progress())
-    },
     checkEndsY(deltaY) {
-      const el = document.getElementsByClassName(`section${this.activeSection}`)
+      const el = document.getElementsByClassName(
+        `section-${this.activeSection}`
+      )
       if (el && el.length) {
         if (
           deltaY === 1 &&
@@ -256,7 +272,6 @@ export default {
     },
     scrollToNextSection(event) {
       const deltaY = Math.sign(event.deltaY)
-
       if (this.checkEndsY(deltaY)) {
         if (deltaY > 0) {
           if (
@@ -275,7 +290,6 @@ export default {
     },
     setActiveSection(id) {
       this.activeSection = id
-
       this.sections = this.sections.map((section) => {
         section.active = section.id === id
         section.offscreen = section.id < this.activeSection

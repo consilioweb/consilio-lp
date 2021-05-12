@@ -68,6 +68,7 @@ html, body {
   background: #000;
   color: #fff;
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 section, .section {
@@ -83,10 +84,6 @@ section, .section {
 ::-webkit-scrollbar-thumb {
   background: #FEF0FF;
   border-radius: 10px;
-}
-
-.step {
-  position: absolute;
 }
 
 /*
