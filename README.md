@@ -1,4 +1,4 @@
-# consilio_lp
+# consilio-lp
 
 ## Build Setup
 
